@@ -140,13 +140,13 @@ class SvgUri extends Component{
 
     return responseXML;
   }
-   
-  // Remove empty strings from children array  
+
+  // Remove empty strings from children array
   trimElementChilden(children) {
     for (child of children) {
       if (typeof child === 'string') {
         if (child.trim.length === 0)
-          children.splice(children.indexOf(child), 1); 
+          children.splice(children.indexOf(child), 1);
       }
     }
   }
@@ -256,7 +256,9 @@ class SvgUri extends Component{
         for (let i = 0; i < node.childNodes.length; i++){
           const isTextValue = node.childNodes[i].nodeValue
           if (isTextValue) {
-            arrayElements.push(node.childNodes[i].nodeValue)
+            if(node.childNodes[i].nodeValue.replace(/\s+/, '') !== ''){
+              arrayElements.push(node.childNodes[i].nodeValue)
+            }
           } else {
             const nodo = this.inspectNode(node.childNodes[i]);
             if (nodo != null) {
